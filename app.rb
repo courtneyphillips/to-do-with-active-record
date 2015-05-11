@@ -21,9 +21,6 @@ post ('/list/new') do
   redirect("/list/#{@id}")
 end
 
-
-
-
 post ('/task/new') do
   description = params.fetch("description")
   @id = params.fetch("list_id")
@@ -39,8 +36,20 @@ get ('/list_new') do
 end
 
 get('/list/:id') do
-  specific_list = List.find(params.fetch("id").to_i())
-  @tasks = specific_list.task()
-  @id = specific_list.id
+  @list = List.find(params.fetch("id").to_i())
+  @tasks = @list.task()
+  erb(:list_info)
+end
+
+
+get('/list/:id/edit') do
+  @list = List.find(params.fetch("id").to_i())
+  erb(:edit_list)
+end
+
+patch('/list/:id') do
+  name = params.fetch("name")
+  @list = List.find(params.fetch("id").to_i)
+  @list.update({:name => name})
   erb(:list_info)
 end

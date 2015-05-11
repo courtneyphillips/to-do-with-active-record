@@ -1,7 +1,7 @@
-<h1>It works!</h1>
+<h1><%= @list.name %></h1>
 
 <p><ul>
-  <% @tasks.each() do |task| %>
+  <% (@list.task()).each() do |task| %>
     <li><%= task.description() %></a></li>
   <% end %>
 </ul>
@@ -11,7 +11,7 @@
 <form action="/task/new" method="post">
   <label for="description">Task Description:</label>
   <input id="description" name="description" type="text">
-  <input id="list_id" name="list_id" type="hidden" value="<%= @id %>">
+  <input id="list_id" name="list_id" type="hidden" value="<%= @list.id %>">
 
 
   <button type="submit">Add Task</button>
@@ -19,3 +19,4 @@
 
 
 <a href='/'>Home</a>
+<a href='/list/<%= @list.id() %>/edit'>Update list Name</a>
