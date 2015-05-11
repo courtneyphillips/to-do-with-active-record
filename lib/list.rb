@@ -46,4 +46,16 @@ class List
     @id = self.id
     DB.exec("DELETE FROM lists WHERE id = #{@id};")
   end
+
+  define_method(:task) do
+    list_tasks = []
+    tasks = DB.exec("SELECT * FROM tasks WHERE list_id = #{self.id};")
+    tasks.each do |task|
+      description = task.fetch('description')
+      list_id = task.fetch('list_id').to_i()
+      task_id = task.fetch('id').to_i()
+      list_tasks.push(Tasks.new({:description => description, :id => task_id, :list_id => list_id}))
+    end
+    list_tasks
+  end
 end

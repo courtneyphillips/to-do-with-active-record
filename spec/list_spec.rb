@@ -20,7 +20,7 @@ describe('List') do
     end
   end
 
-describe('#update') do
+  describe('#update') do
   it('updates the description of an entry') do
     new_list = List.new({:name => ("Pet Chores")})
     new_list.save()
@@ -29,7 +29,7 @@ describe('#update') do
     end
   end
 
-describe('#delete') do
+  describe('#delete') do
   it('deletes a task from the task table') do
     new_list = List.new({:name => ("Pet Chores")})
     new_list.save()
@@ -40,5 +40,13 @@ describe('#delete') do
     end
   end
 
-
+  describe('#task') do
+    it('returns all tasks related to a list id') do
+      new_list = List.new({:name => "get it done"})
+      new_list.save()
+      new_task = Tasks.new({:description => "stuff", :list_id => new_list.id()})
+      new_task.save()
+      expect(new_list.task).to(eq([new_task]))
+    end
+  end
 end
