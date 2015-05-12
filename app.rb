@@ -7,12 +7,12 @@ also_reload('lib/**/*.rb')
 
 DB = PG.connect({:dbname => 'to_do'})
 
-get ('/') do
+get('/') do
   @lists = List.all()
   erb(:index)
 end
 
-post ('/list/new') do
+post('/list/new') do
   name = params.fetch("name")
   new_list = List.new({:name => name})
   new_list.save()
@@ -20,7 +20,7 @@ post ('/list/new') do
   redirect("/list/#{@id}")
 end
 
-post ('/task/new') do
+post('/task/new') do
   description = params.fetch("description")
   @id = params.fetch("list_id")
   list_id = params.fetch("list_id")

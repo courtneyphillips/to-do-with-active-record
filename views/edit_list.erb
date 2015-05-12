@@ -1,4 +1,4 @@
-<h1>Update the <%=@list.name() %> list </h1>
+<h1>Update the <%= @list.name() %> list </h1>
 
 <form action="/list/<%= @list.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
@@ -8,5 +8,6 @@
 
   <button type="submit">Update</button>
 </form>
-
-<a class="btn btn-primary btn-md" href="/" role="button">Return Home</a>
+<div class="buttons">
+  <a class="btn btn-primary btn-md" href="/" role="button">Return Home</a>
+</div>
