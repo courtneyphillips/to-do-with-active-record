@@ -5,7 +5,6 @@ require('./lib/list')
 require('./lib/task')
 also_reload('lib/**/*.rb')
 
-
 DB = PG.connect({:dbname => 'to_do'})
 
 get ('/') do
@@ -30,7 +29,6 @@ post ('/task/new') do
   redirect("/list/#{@id}")
 end
 
-
 get ('/list_new') do
   erb(:list_new)
 end
@@ -40,7 +38,6 @@ get('/list/:id') do
   @tasks = @list.task()
   erb(:list_info)
 end
-
 
 get('/list/:id/edit') do
   @list = List.find(params.fetch("id").to_i())
@@ -52,4 +49,11 @@ patch('/list/:id') do
   @list = List.find(params.fetch("id").to_i)
   @list.update({:name => name})
   erb(:list_info)
+end
+
+delete("/list/:id") do
+  @list = List.find(params.fetch("id").to_i())
+  @list.delete()
+  @lists = List.all()
+  redirect to ('/')
 end

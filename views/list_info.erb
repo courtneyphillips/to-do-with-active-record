@@ -1,12 +1,17 @@
 <h1><%= @list.name %></h1>
 
-<p><ul>
-  <% (@list.task()).each() do |task| %>
-    <li><%= task.description() %></a></li>
-  <% end %>
-</ul>
+<% if @tasks %>
+    <ul>
+    <% (@list.task()).each() do |task| %>
+      <li><%= task.description() %></a></li>
+      <% end %>
+    </ul>
 
-<h2>Add an new Task to this List:</h2>
+<% elsif @tasks = nil %>
+  <p><em>There are currently no tasks added to this list.</em></p>
+<% end %>
+
+<h3>Add an new task to your list <em>"<%= @list.name %>"</em>:</h3>
 
 <form action="/task/new" method="post">
   <label for="description">Task Description:</label>
@@ -17,6 +22,12 @@
   <button type="submit">Add Task</button>
 </form>
 
+<div class="buttons">
+<a class="btn btn-warning btn-md" href='/list/<%= @list.id() %>/edit'>Update List</a><br><br>
+<form action="/list/<%= @list.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn btn-danger btn-md" >Delete List</button>
+</form>
+<a class="btn btn-primary btn-md" href="/" role="button">Return Home</a>
 
-<a href='/'>Home</a>
-<a href='/list/<%= @list.id() %>/edit'>Update list Name</a>
+</div>

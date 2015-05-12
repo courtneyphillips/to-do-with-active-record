@@ -1,9 +1,14 @@
 
+<div class="container">
+<h2>To-Do Lists:</h2>
 <ul>
   <% @lists.each() do |list| %>
-    <li><a href='/list/<%= list.id() %>'><%= list.name() %></a></li>
+    <li><h3><a href='/list/<%= list.id() %>'><%= list.name() %></h3></a></li>
   <% end %>
 </ul>
 
-
-<h3><a href='/list_new'>Add New List</a></h3>
+<div class="buttons">
+<h3><a class="btn btn-success btn-md" href='/list_new'>Add New List</a></h3>
+<a class="btn btn-primary btn-md" href="/" role="button">Return Home</a>
+</div>
+</div>
