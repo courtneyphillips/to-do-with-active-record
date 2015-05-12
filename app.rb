@@ -1,11 +1,11 @@
 require('sinatra')
 require('pg')
 require('sinatra/reloader')
+require('sinatra/activerecord')
 require('./lib/list')
 require('./lib/task')
 also_reload('lib/**/*.rb')
 
-DB = PG.connect({:dbname => 'to_do'})
 
 get('/') do
   @lists = List.all()
