@@ -1,4 +1,4 @@
-class Tasks
+class Tasks < ActiveRecord::Base
   attr_reader(:description, :list_id, :id)
 
   define_method(:initialize) do |attributes|
