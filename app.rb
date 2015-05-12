@@ -6,7 +6,6 @@ require('./lib/list')
 require('./lib/task')
 also_reload('lib/**/*.rb')
 
-
 get('/') do
   @lists = List.all()
   erb(:index)
