@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 require('task')
 require('list')
 require('rspec')
